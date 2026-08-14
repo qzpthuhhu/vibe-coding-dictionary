@@ -70,6 +70,25 @@
 - Radix UI（无障碍组件基元）
 - Lucide React（图标）
 
+## 当前仓库状态
+
+本仓库正在分批开源中。已提交的部分：
+
+| 内容 | 状态 |
+|---|---|
+| 80 概念基础数据 `src/data/concepts.ts` | ✅ 完整 |
+| **80 概念详解 + AI 提示词全文** `src/data/conceptDetails.ts` | ✅ 完整 |
+| 高亮定位 + 讲解卡 + 探索模式 `HighlightProvider.tsx` | ✅ 完整 |
+| 样式体系（深色模式 + 响应式根字号） | ✅ 完整 |
+| 主题切换 `ThemeProvider.tsx` | ✅ 完整 |
+| 项目配置（Vite / TS / Tailwind） | ✅ 完整 |
+| 各内容区域 Section 组件 | 🚧 陆续补充 |
+| 页面装配 `HomePage` / `Layout` / `Header` | 🚧 陆续补充 |
+
+**如果你只想要 80 条 AI 提示词，现在就可以直接用** —— 见下方说明，那是一个零依赖的纯数据文件。
+
+完整可运行版本仍在补充组件代码中。
+
 ## 本地运行
 
 ```bash
@@ -77,6 +96,15 @@ git clone https://github.com/qzpthuhhu/vibe-coding-dictionary.git
 cd vibe-coding-dictionary
 npm install
 npm run dev
+```
+
+> 注意：Section 组件尚在补充中，此时 `npm run dev` 还不能完整启动。数据文件和核心交互逻辑已可独立阅读、复用。
+
+shadcn/ui 基础组件未包含在仓库中，如需完整还原可自行初始化：
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest add button card tabs accordion dialog drawer tooltip switch slider progress
 ```
 
 ## 目录结构
