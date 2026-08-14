@@ -72,7 +72,7 @@
 
 ## 当前仓库状态
 
-本仓库正在分批开源中。已提交的部分：
+**已完整开源，`npm install && npm run dev` 即可跑起完整站点。**
 
 | 内容 | 状态 |
 |---|---|
@@ -82,12 +82,13 @@
 | 样式体系（深色模式 + 响应式根字号） | ✅ 完整 |
 | 主题切换 `ThemeProvider.tsx` | ✅ 完整 |
 | 项目配置（Vite / TS / Tailwind） | ✅ 完整 |
-| 各内容区域 Section 组件 | 🚧 陆续补充 |
-| 页面装配 `HomePage` / `Layout` / `Header` | 🚧 陆续补充 |
+| 基础组件层（Button / Card / Dialog / Sheet / Progress 等） | ✅ 完整 |
+| 13 个内容区域 Section 组件 | ✅ 完整 |
+| 页面装配 `HomePage` / `Layout` / `Header` / `SidebarIndex` | ✅ 完整 |
 
-**如果你只想要 80 条 AI 提示词，现在就可以直接用** —— 见下方说明，那是一个零依赖的纯数据文件。
+构建校验：`tsc --noEmit` 零错误，`vite build` 通过。
 
-完整可运行版本仍在补充组件代码中。
+**如果你只想要 80 条 AI 提示词**，`src/data/conceptDetails.ts` 是一个零依赖的纯数据文件，可以直接拷走用。
 
 ## 本地运行
 
@@ -98,14 +99,15 @@ npm install
 npm run dev
 ```
 
-> 注意：Section 组件尚在补充中，此时 `npm run dev` 还不能完整启动。数据文件和核心交互逻辑已可独立阅读、复用。
+打开 `http://localhost:5173` 即可看到完整站点。
 
-shadcn/ui 基础组件未包含在仓库中，如需完整还原可自行初始化：
+生产构建与类型检查：
 
 ```bash
-npx shadcn@latest init
-npx shadcn@latest add button card tabs accordion dialog drawer tooltip switch slider progress
+npm run build     # tsc --noEmit + vite build
 ```
+
+仓库内的 `src/components/ui/` 是自行实现的轻量组件（Button / Card / Input / Progress / Badge / Dialog / Sheet / ToggleGroup / Image），不依赖 shadcn CLI，无需额外初始化。
 
 ## 目录结构
 
