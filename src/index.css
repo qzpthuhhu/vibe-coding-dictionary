@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Noto+Sans+SC:wght@400;500;700;800&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ===== 响应式根字号分档：让 rem 整体随视口等比缩放 =====
+   ≥2200px (27寸及以上): 17px
+   1800-2199px:          16px
+   1500-1799px:          15px
+   1280-1499px (16寸 MacBook 主要区间): 13.5px
+   1024-1279px:          13px
+   <1024px:              14px（移动端不缩太小，保证可读）
+*/
+html {
+  font-size: 14px;
+}
+@media (min-width: 1024px) { html { font-size: 13px; } }
+@media (min-width: 1280px) { html { font-size: 13.5px; } }
+@media (min-width: 1500px) { html { font-size: 15px; } }
+@media (min-width: 1800px) { html { font-size: 16px; } }
+@media (min-width: 2200px) { html { font-size: 17px; } }
+
+/* ===== 深色模式 CSS 变量（须放在 tailwindcss 之前，确保 @theme inline 能读到） ===== */
+html.dark {
+  --background: hsl(150 18% 8%);
+  --foreground: hsl(140 8% 92%);
+  --card: hsl(150 12% 12%);
+  --card-foreground: hsl(140 8% 92%);
+  --popover: hsl(150 12% 12%);
+  --popover-foreground: hsl(140 8% 92%);
+  --primary: hsl(145 60% 55%);
+  --primary-foreground: hsl(150 20% 8%);
+  --secondary: hsl(150 10% 18%);
+  --secondary-foreground: hsl(140 8% 90%);
+  --muted: hsl(150 10% 18%);
+  --muted-foreground: hsl(145 10% 65%);
+  --accent: hsl(150 10% 18%);
+  --accent-foreground: hsl(140 8% 90%);
+  --info: hsl(221 80% 68%);
+  --info-foreground: hsl(230 30% 12%);
+  --destructive: hsl(0 72% 60%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --success: hsl(135 55% 55%);
+  --success-foreground: hsl(120 30% 10%);
+  --warning: hsl(32 90% 60%);
+  --warning-foreground: hsl(30 40% 10%);
+  --border: hsl(145 10% 22%);
+  --input: hsl(145 10% 22%);
+  --ring: hsl(145 60% 55%);
+  --chart-1: hsl(145 60% 55%);
+  --chart-2: hsl(185 60% 55%);
+  --chart-3: hsl(215 70% 65%);
+  --chart-4: hsl(245 65% 70%);
+  --chart-5: hsl(275 60% 68%);
+  --sidebar: hsl(150 14% 10%);
+  --sidebar-foreground: hsl(140 8% 88%);
+  --sidebar-primary: hsl(145 60% 55%);
+  --sidebar-primary-foreground: hsl(150 20% 8%);
+  --sidebar-accent: hsl(150 10% 16%);
+  --sidebar-accent-foreground: hsl(145 60% 65%);
+  --sidebar-border: hsl(145 10% 18%);
+  --sidebar-ring: hsl(145 60% 55%);
+  --elevate-1: rgba(255, 255, 255, 0.06);
+  --elevate-2: rgba(255, 255, 255, 0.12);
+  --shadow-2xs: 0px 2px 12px 0px hsl(0 0% 0% / 0.3);
+  --shadow-xs: 0px 2px 12px 0px hsl(0 0% 0% / 0.3);
+  --shadow-sm: 0px 2px 16px 0px hsl(0 0% 0% / 0.4), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow: 0px 2px 16px 0px hsl(0 0% 0% / 0.4), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow-md: 0px 2px 16px 0px hsl(0 0% 0% / 0.4), 0px 2px 4px -1px hsl(0 0% 0% / 0.3);
+  --shadow-lg: 0px 2px 16px 0px hsl(0 0% 0% / 0.45), 0px 4px 8px -1px hsl(0 0% 0% / 0.35);
+  --shadow-xl: 0px 2px 20px 0px hsl(0 0% 0% / 0.5), 0px 8px 16px -2px hsl(0 0% 0% / 0.4);
+  --shadow-2xl: 0px 4px 24px 0px hsl(0 0% 0% / 0.55);
+  color-scheme: dark;
+}
+
+/* ===== Tailwind 基础 ===== */
+@import 'tailwindcss';
+
+/* ===== 主题切换平滑过渡（仅颜色类属性，避免布局抖动） ===== */
+html {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+/* 动效和布局相关属性不过渡，避免延迟 */
+[style*='transform'],
+[style*='opacity'] {
+  transition: none !important;
+}
+
+/* ===== 深色模式滚动条 ===== */
+html.dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: hsl(145 10% 22%);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(145 10% 30%);
+  background-clip: content-box;
+  border: 2px solid transparent;
+}
+
+@import 'tw-animate-css';
+@import './tailwind-theme.css';
